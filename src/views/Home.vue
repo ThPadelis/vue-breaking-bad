@@ -2,8 +2,8 @@
   <b-overlay :show="isLoading" spinner-type="border">
     <b-container class="home">
       <b-row>
-        <b-col sm="6" md="4" lg="3" xl="2" v-for="(c, i) in characters" :key="i">
-          <b-card>{{c.name}}</b-card>
+        <b-col sm="6" md="4" lg="3" xl="3" v-for="(c, i) in characters" :key="i">
+          <character :character="c"></character>
         </b-col>
       </b-row>
     </b-container>
@@ -14,6 +14,10 @@
 import { mapGetters } from "vuex";
 export default {
   name: "Home",
+  components: {
+    Character: () =>
+      import(/* webpackChunkName: "character" */ "@/components/Character.vue"),
+  },
   computed: {
     ...mapGetters({
       characters: "characters",
