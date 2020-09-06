@@ -19,9 +19,10 @@ export default new Vuex.Store({
   },
   actions: {
     setCharacters: async (state) => {
-      console.log("vuex", "setCharacters");
+      state.commit("setIsLoading", true);
       const { data } = await Axios.get("characters");
       state.commit("setCharacters", data);
+      state.commit("setIsLoading", false);
     },
     setIsLoading: async (state, payload) => {
       state.commit("setIsLoading", payload);
